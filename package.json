@@ -29,10 +29,10 @@
     "tape": "^2.13.1"
   },
   "dependencies": {
-    "body-parser": "^1.2.0",
+    "consolidate": "^0.10.0",
     "debug": "^0.8.1",
     "express": "^4.2.0",
-    "faucet": "0.0.1",
+    "handlebars": "^2.0.0-alpha.4",
     "morgan": "^1.0.1",
     "multiparty": "^3.2.8"
   }
