@@ -1,0 +1,72 @@
+  html, body, h1, form, fieldset, legend, ol, li {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background: #eee;
+    color: #111111;
+    font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    padding: 20px;
+  }
+  form#pun-machine {
+    background: #666;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 20px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  form#pun-machine fieldset {
+    border: none;
+    margin-bottom: 10px;
+  }
+  form#pun-machine fieldset:last-of-type {
+    margin-bottom: 0;
+  }
+  form#pun-machine legend {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-shadow: 0 1px 1px #111;
+  }
+  form#pun-machine input:not([type=radio]), form#pun-machine textarea {
+    background: #ffffff;
+    border: none;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    font: italic 13px Georgia, "Times New Roman", Times, serif;
+    outline: none;
+    padding: 5px;
+    width: 200px;
+  }
+  form#pun-machine input:not([type=submit]):focus, form#pun-machine textarea:focus {
+    background: #eaeaea;
+  }
+  form#pun-machine button {
+    background: #384313;
+    border: none;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+    color: #ffffff;
+    display: block;
+    font: 18px Georgia, "Times New Roman", Times, serif;
+    letter-spacing: 1px;
+    margin: auto;
+    padding: 7px 25px;
+    text-shadow: 0 1px 1px #000000;
+    text-transform: uppercase;
+  }
+  form#pun-machine button:hover {
+    background: #1e2506;
+    cursor: pointer;
+  }
+  footer a {
+    color: #666;
+  }
