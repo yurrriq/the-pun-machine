@@ -1,6 +1,6 @@
-(ns ^{:doc "Greyt punster"
-      :author "Eric Bailey"}
-  puns.greyt)
+(ns puns.greyt
+  "Greyt punster"
+  {:author "Eric Bailey"})
 
 (defn pen-pun
   "TODO: Make greyt puns."
