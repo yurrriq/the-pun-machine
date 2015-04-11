@@ -7,4 +7,4 @@ Puns on puns on puns on the internet.
 
 Copyright © 2014-2015 Eric Bailey
 
-Distributed under [MIT License](http://yurrriq.mit-license.org/2014/).
+Distributed under [the MIT License](http://yurrriq.mit-license.org/2014/).
