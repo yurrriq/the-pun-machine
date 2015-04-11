@@ -5,6 +5,7 @@
             :url "http://yurrriq.mit-license.org/2014/"}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
+                 [org.clojure/core.typed "0.2.84"]
                  [compojure "1.3.3"]
                  [http-kit "2.1.19"]
                  [ring/ring-defaults "0.1.4"]
