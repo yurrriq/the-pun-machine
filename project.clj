@@ -5,9 +5,9 @@
             :url "http://yurrriq.mit-license.org/2014/"}
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [compojure "1.3.1"]
+                 [compojure "1.3.3"]
                  [http-kit "2.1.19"]
-                 [ring/ring-defaults "0.1.3"]
+                 [ring/ring-defaults "0.1.4"]
                  [stencil "0.3.5"]]
   
   :main ^:skip-aot puns.core
