@@ -101,12 +101,13 @@
     (with-open [dict (reader (resource "cmudict.0.7a.txt"))]
       (some (is-word? word) (drop 212 (line-seq dict))))))
 
+(ann ey?' (IFn [AAVecString -> ABoolean]))
+(defn ey?' [coll] (some? (seq (filter (starts-with? "EY") coll))))
+
 (ann ey? (IFn [String -> ABoolean]))
 (defn ey?
   "Is this grey or not?"
-  [word]
-  (when-let [coll (syllables (upper-case word))]
-    (some? (seq (filter (starts-with? "EY") coll)))))
+  [word] (some-> (syllables (upper-case word)) ey?'))
 
 (ann pen-pun (IFn [String -> String]))
 (defn pen-pun
