@@ -109,7 +109,25 @@
   "Is this grey or not?"
   [word] (some-> (syllables (upper-case word)) ey?'))
 
-(ann pen-pun (IFn [String -> String]))
+(ann ^:no-check greyify (IFn [String -> AAVecString]))
+(defn greyify [word]
+  (loop [coll :- (U AAVecString (ASeq String)), (syllables word)
+         acc  :- (U (HVec []) (PersistentVector String)), []
+         tail :- String, ""]
+    (if (empty? coll)
+      acc
+      (let [[x y] coll]
+        (if (and y (is-consonant? x) ((starts-with? "EY") y))
+          (if (= "G" tail)
+            (recur (rest (rest coll)) (conj acc "R" y) y)
+            (recur (rest (rest coll)) (conj acc "G" "R" y) y))
+          (recur (rest coll) (conj acc x) x))))))
+
+(ann pen-pun (IFn [String -> (U String AAVecString)]))
 (defn pen-pun
   "TODO: Make greyt puns."
-  [s] s)
+  [s]
+  (let [greyified (greyify s)]
+    (if (ey?' greyified)
+      (or (ldb/get db greyified) greyified)
+      s)))
