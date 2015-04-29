@@ -1,4 +1,4 @@
-(defproject me.ericb.puns "0.1.0-SNAPSHOT"
+(defproject me.ericb.puns "4.2.0-SNAPSHOT"
   :description "Puns on puns on puns on the internet."
   :url "http://puns.ericb.me"
   :license {:name "MIT License"
