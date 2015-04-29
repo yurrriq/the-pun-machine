@@ -8,9 +8,14 @@
            (java.lang CharSequence)
            (java.net URL)
            (java.util.regex Pattern))
-  (:require [clojure.core.typed :refer [Any AVec IFn U ann defalias]]
+  (:require [clj-leveldb :as ldb]
+            [clojure.core.typed :refer [Any ASeq AVec HMap HVec IFn U
+                                        ann ann-form defalias loop]]
             [clojure.java.io :refer [reader resource]]
-            [clojure.string :refer [split upper-case]]))
+            [clojure.string :refer [split upper-case]]
+            [opennlp.nlp :refer [make-detokenizer make-tokenizer]]
+            [taoensso.nippy :as nippy])
+  (:refer-clojure :exclude [loop]))
 
 ;; ===== TYPE ALIASES =====
 
@@ -21,6 +26,12 @@
 (defalias AVecString (U (PersistentVector String) nil))
 
 (defalias AAVecString (U (AVec String) nil))
+
+(defalias LevelDBConfig
+  (HMap :mandatory {:val-decoder [Any -> java.lang.String]
+                    :key-encoder [(PersistentVector String) -> Any]
+                    :key-decoder [Any -> Any]}
+        :complete? true))
 
 
 ;; ===== MISC ANNOTATIONS =====
@@ -34,11 +45,39 @@
 
 (ann ^:no-check clojure.java.io/resource (IFn [String -> URL]))
 
-;; FIXME: LAME HACK
-(ann clojure.string/split (IFn [AString Pattern -> (PersistentVector String)]))
+(ann ^:no-check byte-streams/to-string (IFn [Any -> String]))
+
+(ann ^:no-check clj-leveldb/get (IFn [Any AAVecString -> AString]))
+
+(ann ^:no-check clj-leveldb/create-db (IFn [String LevelDBConfig -> Any]))
+
+(ann ^:no-check opennlp.nlp/make-detokenizer (IFn [URL -> Any]))
+
+(ann ^:no-check opennlp.nlp/make-tokenizer (IFn [URL -> Any]))
+
+(ann ^:no-check taoensso.nippy/freeze (IFn [Any -> Any]))
+
+(ann ^:no-check taoensso.nippy/thaw (IFn [Any -> Any]))
 
 
 ;; ===== MAIN =====
+
+(ann db Any)
+(defonce db
+  (ldb/create-db (ann-form "/tmp/pun-machine" String)
+                 (ann-form {:key-decoder nippy/thaw
+                            :key-encoder nippy/freeze
+                            :val-decoder byte-streams/to-string}
+                           LevelDBConfig)))
+
+(def tokenize (make-tokenizer (resource "models/en-token.bin")))
+
+(def detokenize (make-detokenizer (resource "models/english-detokenizer.xml")))
+
+(ann is-consonant? (IFn [String -> Boolean]))
+(defn is-consonant? [s]
+  (and (= (count s) 1)
+       (. "BCDFGHJKLMNPQRSTVWXZ" contains (subs s 0 1))))
 
 (ann is-word? (IFn [String -> (IFn [String -> AAVecString])]
                    [String String -> AAVecString]))
@@ -47,7 +86,8 @@
    (fn [line] (is-word? word line)))
   ([word line]
    (let [[k v] (split line #"  ")]
-     (when (= k word) (split v #" ")))))
+     (when (and (= k word) (string? v))
+       (split v #" ")))))
 
 (ann starts-with? (IFn [String -> (IFn [String -> Boolean])]))
 (defn- starts-with? [^String s1] (fn [^String s2] (.startsWith s2 s1)))
