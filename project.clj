@@ -6,6 +6,7 @@
 
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/core.typed "0.2.84"]
+                 [clojure-opennlp "0.3.3"]
                  #_[clj-fuzzy "0.2.1"]
                  [compojure "1.3.3"]
                  [http-kit "2.1.19"]
