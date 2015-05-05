@@ -1,10 +1,11 @@
 (ns puns.core
   "punXcore"
   {:author "Eric Bailey"}
-  (:require [compojure.core :refer [GET POST defroutes]]
+  (:require [clojure.string :refer [join]]
+            [compojure.core :refer [GET POST defroutes]]
             [compojure.route :as route]
             [org.httpkit.server :refer [run-server]]
-            [puns.greyt :refer [pen-pun]]
+            [puns.greyt :refer [detokenize pen-pun tokenize]]
             [puns.html :as html]
             [puns.css :as css]
             [ring.middleware.anti-forgery :refer [*anti-forgery-token*]]
@@ -18,7 +19,11 @@
     {:content-type "text/css"
      :body (css/styles)})
   (POST "/" {{q :q} :params}
-    (pen-pun q))
+    (->> (tokenize q)
+         (map pen-pun)
+         (map (fn [pun] (if (vector? pun) (join " " pun) pun)))
+         (detokenize)
+         (html/main-page)))
   (route/resources "/"))
 
 (defonce ^:private server (atom nil))
