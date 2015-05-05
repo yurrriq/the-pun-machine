@@ -12,19 +12,20 @@
             [ring.middleware.defaults :refer :all])
   (:gen-class))
 
-(defroutes ^:private app
-  (GET "/" []
-    (html/main-page))
-  (GET "/css/styles.css" []
-    {:content-type "text/css"
-     :body (css/styles)})
-  (POST "/" {{q :q} :params}
-    (->> (tokenize q)
-         (map pen-pun)
-         (map (fn [pun] (if (vector? pun) (join " " pun) pun)))
-         (detokenize)
-         (html/main-page "http://puns.ericb.me")))
-  (route/resources "/"))
+(let [url "http://puns.ericb.me"]
+  (defroutes ^:private app
+    (GET "/" []
+      (html/main-page url))
+    (GET "/css/styles.css" []
+      {:content-type "text/css"
+       :body (css/styles)})
+    (POST "/" {{q :q} :params}
+      (->> (tokenize q)
+           (map pen-pun)
+           (map (fn [pun] (if (vector? pun) (join " " pun) pun)))
+           (detokenize)
+           (html/main-page url)))
+    (route/resources "/")))
 
 (defonce ^:private server (atom nil))
 
