@@ -64,7 +64,7 @@
      "no@thanks.com"]]])
 
 (defn main-page [& [pun]]
-  (with-base-url "http://localhost:3000" ; "http://puns.ericb.me"
+  (with-base-url "http://puns.ericb.me"
     (html5
      {:prefix "og: http://ogp.me/ns#"}
      (html
