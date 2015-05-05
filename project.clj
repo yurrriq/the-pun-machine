@@ -18,10 +18,9 @@
                  [garden "1.2.5"]
                  [hiccup "1.0.5"]
                  [http-kit "2.1.19"]
-                 [reagent "0.5.0"]
-                 [ring/ring-defaults "0.1.4"]
-                 [stencil "0.3.5"]]
-  
+                 #_[reagent "0.5.0"]
+                 [ring/ring-defaults "0.1.4"]]
+
   :main          ^:skip-aot puns.core
-  
+
   :profiles      {:uberjar {:aot :all}})

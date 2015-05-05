@@ -5,16 +5,14 @@
             [compojure.route :as route]
             [org.httpkit.server :refer [run-server]]
             [puns.greyt :refer [pen-pun]]
+            [puns.html :as html]
             [ring.middleware.anti-forgery :refer [*anti-forgery-token*]]
-            [ring.middleware.defaults :refer :all]
-            [stencil.core :refer [render-file]])
+            [ring.middleware.defaults :refer :all])
   (:gen-class))
 
 (defroutes ^:private app
   (GET "/" []
-    (render-file "templates/index"
-                 {:title "The Pun Machine"
-                  :anti-forgery-token ((constantly *anti-forgery-token*))})) 
+    (html/main-page))
   (POST "/" {{q :q} :params}
     (pen-pun q))
   (route/resources "/"))
