@@ -10,16 +10,18 @@
   (let [kf #(keyword (str "og" (when (string? %) ":") %))]
     (for [[k v] m] [:meta {:property (kf k), :content v}])))
 
-(defn head [{:keys [og-image title]}]
+(defn head [{:keys [og-image title url]}]
   (let [og-image (to-uri og-image)]
     [:head
      [:title title]
      [:link {:ref "icon", :type "image/png", :href og-image}]
      (include-css (to-uri "/css/styles.css"))
      [:meta {:name "viewport", :content "width=320"}]
-     (og-meta {:description "The greyest thing you've ever."
-               :image       og-image
-               :type        "website"})]))
+     (og-meta {:type        "website"
+               :url         url
+               :title       title
+               :description "The greyest thing you've ever."
+               :image       og-image})]))
 
 (defn punsonpunsonpuns []
   [:legend
@@ -63,13 +65,14 @@
     [:a {:href "http://www.endoftheinternet.com", :target "_blank"}
      "no@thanks.com"]]])
 
-(defn main-page [& [pun]]
-  (with-base-url "http://puns.ericb.me"
+(defn main-page [url & [pun]]
+  (with-base-url url
     (html5
      {:prefix "og: http://ogp.me/ns#"}
      (html
       (head {:og-image "/img/50percentgrey.png"
-             :title    "The Pun Machine 4.20"})
+             :title    "The Pun Machine 4.20"
+             :url      url})
       [:body
        (form pun)
        (footer)]))))

@@ -23,7 +23,7 @@
          (map pen-pun)
          (map (fn [pun] (if (vector? pun) (join " " pun) pun)))
          (detokenize)
-         (html/main-page)))
+         (html/main-page "http://puns.ericb.me")))
   (route/resources "/"))
 
 (defonce ^:private server (atom nil))
