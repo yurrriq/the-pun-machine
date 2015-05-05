@@ -6,6 +6,7 @@
             [org.httpkit.server :refer [run-server]]
             [puns.greyt :refer [pen-pun]]
             [puns.html :as html]
+            [puns.css :as css]
             [ring.middleware.anti-forgery :refer [*anti-forgery-token*]]
             [ring.middleware.defaults :refer :all])
   (:gen-class))
@@ -13,6 +14,9 @@
 (defroutes ^:private app
   (GET "/" []
     (html/main-page))
+  (GET "/css/styles.css" []
+    {:content-type "text/css"
+     :body (css/styles)})
   (POST "/" {{q :q} :params}
     (pen-pun q))
   (route/resources "/"))
