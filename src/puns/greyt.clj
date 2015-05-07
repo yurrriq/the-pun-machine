@@ -64,7 +64,7 @@
 
 (ann db Any)
 (defonce db
-  (ldb/create-db (ann-form "/tmp/pun-machine" String)
+  (ldb/create-db (ann-form "pun-machine-db" String)
                  (ann-form {:key-decoder nippy/thaw
                             :key-encoder nippy/freeze
                             :val-decoder byte-streams/to-string}
