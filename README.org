@@ -1,0 +1,11 @@
+* The Pun Machine 4.20
+
+[[https://travis-ci.org/yurrriq/the-pun-machine][https://travis-ci.org/yurrriq/the-pun-machine.svg?branch=develop]]
+
+Puns on puns on puns on the internet.
+[[./resources/public/img/grey_cat.jpg]]
+
+** License
+Copyright © 2014-2015 Eric Bailey
+
+Distributed under [the MIT License](http://yurrriq.mit-license.org/2014/).
