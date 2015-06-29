@@ -1,6 +1,9 @@
 * The Pun Machine 4.20
 
-[[https://travis-ci.org/yurrriq/the-pun-machine][https://travis-ci.org/yurrriq/the-pun-machine.svg?branch=develop]]
+[[https://travis-ci.org/yurrriq/the-pun-machine][file:https://travis-ci.org/yurrriq/the-pun-machine.svg?branch=develop]]
+[[https://jarkeeper.com/yurrriq/the-pun-machine][file:https://jarkeeper.com/yurrriq/the-pun-machine/status.png]]
+[[https://github.com/yurrriq/the-pun-machine/blob/develop/LICENSE][file:https://img.shields.io/github/license/yurrriq/the-pun-machine.svg]]
+# [[https://github.com/yurrriq/the-pun-machine/releases/latest][file:https://img.shields.io/github/release/yurrriq/the-pun-machine.svg]]
 
 Puns on puns on puns on the internet.
 [[./resources/public/img/grey_cat.jpg]]
