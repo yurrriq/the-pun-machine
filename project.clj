@@ -7,7 +7,7 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-3308"]
                  #_[org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [org.clojure/core.typed "0.3.0"]
+                 [org.clojure/core.typed "0.3.2"]
                  [clojure-opennlp "0.3.3"]
                  [com.taoensso/nippy "2.9.0"]
                  [factual/clj-leveldb "0.1.1"]
